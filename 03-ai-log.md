@@ -1,6 +1,4 @@
-# Lab 02 — AI Log & Reflection
-
-> **Người viết:** `[ĐIỀN HỌ TÊN — MSSV]`  
+# Lab 02 — AI Log & Reflection  
 > **Công cụ:** Trợ lý AI hội thoại và prototype Gemini 2.5 Flash trong repo  
 > **Lưu ý:** Nhật ký này mô tả cách AI được dùng như thought-partner; các nhận định về vận hành vẫn cần người học và stakeholder xác minh.
 

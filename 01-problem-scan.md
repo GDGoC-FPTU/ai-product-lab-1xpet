@@ -1,7 +1,4 @@
-# Lab 02 — Problem Scan & Quick Assessment
-
-> **Phạm vi:** Vin Smart Future  
-> **Ghi chú về số liệu:** Các con số dưới đây là giả định scoping để thiết kế pilot, chưa phải số liệu vận hành chính thức. Baseline phải được xác nhận bằng log và time study trước khi triển khai.
+# Lab 02 — Problem Scan & Quick Assess
 
 ## Phase 1 — SCAN
 
@@ -55,14 +52,3 @@ Danh sách sử dụng đủ bốn lens. Ba bài toán được chọn để qui
 | **Metric pilot** | Thời gian soạn **20 → ≤8 phút**; **≥99% factual consistency** trên trường bắt buộc; **100%** hồ sơ được bác sĩ duyệt; **0** bản nháp tự phát hành. |
 | **Quick Architecture** | **LLM Feature + validation rules + bắt buộc HITL**. |
 
-## So sánh nhanh và lựa chọn
-
-| Tiêu chí (1–5) | Xanh SM: pin yếu | Vinhomes: phản ánh | Vinmec: xuất viện |
-|---|---:|---:|---:|
-| Giá trị vận hành | 5 | 4 | 4 |
-| Có thể đo trong pilot | 5 | 4 | 3 |
-| Dữ liệu/luồng tích hợp khả thi | 4 | 4 | 2 |
-| Rủi ro còn kiểm soát được | 4 | 3 | 2 |
-| **Tổng** | **18** | **15** | **11** |
-
-**Chọn:** Điều phối sự cố pin yếu của Xanh SM. Case có workflow hẹp, metric rõ và có thể giữ quyết định cuối cùng ở điều phối viên. Phần xác định trạm hợp lệ là rule-based; LLM chỉ làm tốt phần tổng hợp dữ liệu và soạn ngôn ngữ.

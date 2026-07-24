@@ -9,10 +9,8 @@
 | 3 | VinFast | Lặp lại | Nhân viên tài chính đối chiếu phiên sạc, hóa đơn và giao dịch thanh toán từ các nguồn khác nhau; ngoại lệ phải kiểm tra thủ công. |
 | 4 | Vinmec | Tốn thời gian | Bác sĩ tổng hợp dữ kiện từ bệnh án để soạn bản nháp tóm tắt xuất viện; cần kiểm tra y khoa trước khi phát hành. |
 | 5 | Vinpearl / VinWonders | Stakeholder Pain | Nhân viên quầy mất thời gian trả lời lặp lại về điều kiện vé, giờ hoạt động và đổi lịch; khách phải chờ trong giờ cao điểm. |
-| 6 | Xanh SM (GSM) | Stakeholder Pain | Tài xế nhận điểm đón khó tiếp cận hoặc không an toàn, phải gọi tổng đài để mô tả và xin đổi điểm đón. |
-| 7 | Xanh SM (GSM) | AI-upgrade | Nhân viên phân tích phải đọc ghi chú và transcript cuộc gọi để tổng hợp nguyên nhân hủy chuyến; taxonomy rule-based bỏ sót cách diễn đạt mới. |
 
-Danh sách sử dụng đủ bốn lens. Ba bài toán được chọn để quick-assess là **#1, #2 và #4**, dựa trên tần suất giả định, thời gian xử lý và khả năng đặt ranh giới an toàn.
+Danh sách gồm đúng **5 bài toán** và sử dụng đủ bốn lens. Ba bài toán được chọn để quick-assess là **#1, #2 và #4**, dựa trên tần suất giả định, thời gian xử lý và khả năng đặt ranh giới an toàn.
 
 ## Phase 2 — QUICK-ASSESS
 
@@ -51,4 +49,3 @@ Danh sách sử dụng đủ bốn lens. Ba bài toán được chọn để qui
 | **AI hỗ trợ** | LLM chỉ tạo bản nháp có trích dẫn tới trường dữ liệu nguồn; bác sĩ đối chiếu và ký. Không đề xuất chẩn đoán hoặc đơn thuốc mới. |
 | **Metric pilot** | Thời gian soạn **20 → ≤8 phút**; **≥99% factual consistency** trên trường bắt buộc; **100%** hồ sơ được bác sĩ duyệt; **0** bản nháp tự phát hành. |
 | **Quick Architecture** | **LLM Feature + validation rules + bắt buộc HITL**. |
-

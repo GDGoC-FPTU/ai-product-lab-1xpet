@@ -1,3 +1,12 @@
+# Họ và tên các thành viên
+Ngô Việt Anh - 2A202601579  
+Lê Trung Hiếu - 2A202601917  
+Bùi Duy Hải - 2A202601878  
+Đoàn Nhật Bình - 2A202602018  
+Phó Viết Tiến Anh - 2A202601341  
+Ngô Hoàng Gia Bảo - 2A202601375  
+
+
 # Deliverable Example — Vin Smart Future (GSM / Xanh SM Use Case)
 
 > **Ví dụ bài nộp hoàn chỉnh từ đầu đến cuối lab, đã được định vị lại theo Rubric mới và bối cảnh vận hành của Vin Smart Future.**
@@ -9,7 +18,7 @@
 
 ## 🏛️ Bối cảnh: Tôi là ai?
 
-Tôi là **Nam**, AI Engineer tại **Vin Smart Future**. Nhóm chúng tôi được giao nhiệm vụ phối hợp với Khối Vận Hành của **Xanh SM (GSM)** để tìm kiếm các cơ hội tối ưu hóa bằng trí tuệ nhân tạo. 
+Tôi là **Hải**, AI Engineer tại **Vin Smart Future**. Nhóm chúng tôi được giao nhiệm vụ phối hợp với Khối Vận Hành của **Xanh SM (GSM)** để tìm kiếm các cơ hội tối ưu hóa bằng trí tuệ nhân tạo. 
 
 Thông qua khảo sát thực địa tại Trung tâm Điều vận Xanh SM Hà Nội, tôi nhận thấy các điều phối viên (Dispatchers) đang gặp một áp lực cực kỳ lớn vào giờ cao điểm, dẫn đến việc rò rỉ hiệu suất điều xe và tăng tỉ lệ khách hàng hủy chuyến. Bài toán tôi mang vào buổi Lab hôm nay đến từ chính quan sát thực tế này.
 

@@ -23,7 +23,6 @@ if hasattr(sys.stderr, 'reconfigure'):
 from pathlib import Path
 from typing import Any
 
-from dotenv import load_dotenv
 from google import genai
 from google.genai import types
 
@@ -33,7 +32,16 @@ GEMINI_MODEL = "gemini-3.6-flash"
 DRAFT_TAG = "[DRAFT_ONLY]"
 
 ENV_PATH = Path(__file__).resolve().parent.parent / ".env"
-load_dotenv(dotenv_path=ENV_PATH)
+if ENV_PATH.exists():
+    try:
+        with open(ENV_PATH, "r", encoding="utf-8") as f:
+            for line in f:
+                line = line.strip()
+                if line and not line.startswith("#") and "=" in line:
+                    key, val = line.split("=", 1)
+                    os.environ.setdefault(key.strip(), val.strip().strip("'\""))
+    except Exception:
+        pass
 
 
 # ===========================================================================

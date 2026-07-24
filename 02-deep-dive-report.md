@@ -2,8 +2,15 @@
 
 ### AI Product Scoping — Vin Smart Future
 
-> **Tên nhóm:** 1xpet  
-> **Thành viên:**
+## 👥 Thông tin Nhóm & Thành viên
+* **Tên nhóm:** 1xpet
+* **Danh sách thành viên:**  
+Ngô Việt Anh - 2A202601579  
+Lê Trung Hiếu - 2A202601917  
+Bùi Duy Hải - 2A202601878  
+Đoàn Nhật Bình - 2A202602018  
+Phó Viết Tiến Anh - 2A202601341  
+Ngô Hoàng Gia Bảo - 2A202601375
 
 ---
 

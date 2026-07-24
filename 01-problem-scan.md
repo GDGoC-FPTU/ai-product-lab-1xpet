@@ -1,69 +1,113 @@
-# 01 — Problem Scan (Cá nhân)
-### AI Product Scoping — Vin Smart Future
+# 📄 01-problem-scan.md — Báo cáo cá nhân Phase 1 & Phase 2
+
+## 🏛️ Thông tin cá nhân
+* **Họ và tên:** Bùi Duy Hải
+* **Mã số sinh viên:** 2A202601878
 
 ---
 
-## 🔍 Phase 1 — SCAN
+# 🔍 Phase 1 — SCAN (Bảng quét cơ hội)
 
-### 📝 List bài toán của tôi:
+Dưới đây là danh sách 6 bài toán/bottleneck vận hành thực tế quét qua hoạt động của các công ty thành viên Vingroup thông qua 4 Lenses (Lặp lại, Tốn thời gian, AI-upgrade, Stakeholder Pain):
 
-| # | Subsidiary | Lens | Mô tả ngắn bài toán |
-|---|---|---|---|
-| 1 | Xanh SM | Stakeholder Pain | Tài xế nhận gợi ý trạm sạc không tính đến mức pin hiện tại và khoảng cách an toàn, dẫn đến tài xế bị kẹt pin giữa đường hoặc phải tự tìm trạm sạc ngoài hệ thống. |
-| 2 | VinFast | Lặp lại | Nhân viên bảo hành đối soát thủ công log lỗi pin từ xe với phiếu yêu cầu bảo hành để xác định lỗi có nằm trong diện bảo hành hay không. |
-| 3 | Vinhomes | Tốn thời gian | Nhân viên CSKH tòa nhà đọc và soạn phản hồi thủ công cho từng đánh giá 1-2 sao của cư dân trên app quản lý căn hộ. |
-| 4 | Vinmec | AI-upgrade | Tổng đài viên tiếp nhận cuộc gọi đặt lịch khám phải hỏi thủ công triệu chứng để xếp đúng chuyên khoa, gây chờ lâu và xếp sai khoa ở giờ cao điểm. |
-| 5 | Vinpearl | AI-upgrade | Khách quốc tế đặt vé/dịch vụ tại VinWonders qua chatbot CSKH hiện tại chỉ trả lời rập khuôn bằng tiếng Việt, không xử lý được câu hỏi đa ngôn ngữ hoặc yêu cầu phức tạp (đổi vé, hoàn tiền). |
-
----
-
-## 🃏 Phase 2 — QUICK-ASSESS
-
-### QUICK PROBLEM CARD #1
-
-- **Bài toán (1 câu):** Hệ thống điều vận Xanh SM gợi ý trạm sạc cho tài xế mà không xét đến ngưỡng pin nguy hiểm, khiến tài xế có nguy cơ hết pin giữa đường thay vì được điều xe sạc di động kịp thời.
-- **Công ty thành viên:** [x] Xanh SM
-- **Ai đang đau (Actor)?** Tài xế Xanh SM đang chạy chuyến với pin thấp; gián tiếp là dispatcher phải xử lý cuộc gọi khẩn cấp khi tài xế kẹt pin.
-- **Workflow thủ công hiện tại (4 bước):**
-  1. Tài xế thấy pin thấp, mở app/gọi tổng đài báo tình trạng.
-  2. Dispatcher tra cứu thủ công trạm sạc gần nhất trên bản đồ.
-  3. Dispatcher đọc thông tin khoảng cách, ước lượng bằng kinh nghiệm xem tài xế có đến kịp không.
-  4. Dispatcher nhắn trạm sạc cho tài xế hoặc gọi điều xe cứu hộ nếu nhận ra quá xa.
-- **Bước nào tốn thời gian/lỗi nhất?** Bước 3 (ước lượng thủ công) — ⏱ ước tính 3-5 phút/lượt, và dễ sai khi dispatcher không kiểm tra chính xác ngưỡng pin/khoảng cách trong lúc gấp.
-- **AI có thể nhảy vào hỗ trợ ở bước nào?** Bước 2-3: AI đọc mức pin + tọa độ, tự động áp ngưỡng an toàn (pin < 5% → không đề xuất trạm > 5km, thay vào đó soạn sẵn đề xuất điều xe sạc di động) để dispatcher chỉ cần duyệt và gửi.
-- **Đo thành công bằng gì (Metric có số)?** Giảm thời gian xử lý một ca báo pin thấp từ ~4 phút xuống dưới 1 phút; giảm số ca tài xế hết pin giữa đường về gần 0.
-- **Quick Architecture:** [x] LLM (có ranh giới cứng dạng rule để chặn đề xuất sai khi pin nguy hiểm)
+| # | Subsidiary | Lens | Mô tả ngắn bài toán & Bottleneck |
+|---|------------|------|-----------------------------------|
+| 1 | **Xanh SM (GSM)** | Tốn thời gian | Điều phối viên xử lý thủ công các báo cáo sự cố hết pin/cạn kiệt pin giữa đường của tài xế (mất 15 phút/lượt). |
+| 2 | **VinFast** | Lặp lại | So khớp hóa đơn sạc điện và đối chiếu dữ liệu thanh toán trạm sạc đối tác hằng tuần. |
+| 3 | **Vinhomes** | AI-upgrade | Phân loại và phản hồi tự động các ý kiến/khiếu nại của cư dân trên ứng dụng Vinhomes Resident (CSKH phản hồi rập khuôn, trễ SLA). |
+| 4 | **Vinmec** | Pain từ người khác | Bác sĩ mất nhiều thời gian tổng hợp hồ sơ bệnh án và viết tóm tắt xuất viện (mất 20-30 phút/bệnh nhân). |
+| 5 | **Xanh SM (GSM)** | Lặp lại | Phân tích lý do khách hàng hủy chuyến từ ghi âm cuộc gọi và ghi chú tài xế để phát hiện lỗi hệ thống. |
+| 6 | **Vinpearl** | AI-upgrade | Hỗ trợ tư vấn và đặt lịch tự động các gói dịch vụ vui chơi giải trí VinWonders cho khách hàng quốc tế. |
 
 ---
 
-### QUICK PROBLEM CARD #2
+# 🃏 Phase 2 — QUICK-ASSESS (3 Quick Problem Cards)
 
-- **Bài toán (1 câu):** Nhân viên CSKH Vinhomes mất nhiều thời gian đọc và soạn phản hồi thủ công cho từng đánh giá tiêu cực của cư dân trên app quản lý tòa nhà.
-- **Công ty thành viên:** [x] Vinhomes
-- **Ai đang đau (Actor)?** Nhân viên CSKH quản lý tòa nhà.
-- **Workflow thủ công hiện tại (4 bước):**
-  1. Đánh giá 1-2 sao xuất hiện trên hệ thống quản lý.
-  2. Nhân viên đọc nội dung, xác định vấn đề (kỹ thuật, dịch vụ, an ninh...).
-  3. Nhân viên tra cứu chính sách/quy trình xử lý tương ứng.
-  4. Nhân viên soạn phản hồi, gửi và cập nhật trạng thái ticket.
-- **Bước nào tốn thời gian/lỗi nhất?** Bước 3-4 — ⏱ ước tính 8-10 phút/đánh giá, dễ phản hồi không nhất quán giữa các nhân viên.
-- **AI có thể nhảy vào hỗ trợ ở bước nào?** Bước 2-4: AI phân loại vấn đề, gợi ý phản hồi nháp bám theo chính sách, nhân viên chỉ cần kiểm tra và gửi.
-- **Đo thành công bằng gì (Metric có số)?** Giảm thời gian soạn phản hồi từ 10 phút xuống dưới 2 phút; tăng tỷ lệ phản hồi trong 24h.
-- **Quick Architecture:** [x] LLM
+### 📌 QUICK PROBLEM CARD #1 (Bài toán được chọn cho Deep-Dive)
+
+```text
+┌─────────────────────────────────────────────────────────────┐
+│ QUICK PROBLEM CARD #1                                       │
+│                                                             │
+│ Bài toán: Tài xế Xanh SM báo cáo sự cố pin cực kỳ khẩn cấp │
+│ giữa đường cần chỉ dẫn trạm sạc gần nhất hoặc xe cứu hộ.    │
+│ Công ty thành viên: [x] Xanh SM (GSM)                       │
+│                                                             │
+│ Ai đang đau (Actor)? Tài xế xe điện & Điều phối viên (Dispatch)│
+│                                                             │
+│ Workflow thủ công hiện tại (5 bước):                        │
+│   1. Tài xế gọi tổng đài điều vận báo sự cố pin             │
+│   ──> 2. Tra cứu thủ công định vị GPS xe trên bản đồ         │
+│   ──> 3. Tra cứu trạm sạc VinFast còn trụ trống phù hợp 🔴   │
+│   ──> 4. Soạn thảo tin nhắn hướng dẫn đường đi gửi qua App 🔴│
+│   ──> 5. Liên hệ xe sạc lưu động nếu pin cạn kiệt (< 5%)    │
+│                                                             │
+│ Bước tốn thời gian nhất? Bước 3 & 4 (⏱ 10 phút/lượt)        │
+│ AI hỗ trợ ở bước nào? Bước 3 & 4 (Auto pull data + Draft SMS)│
+│                                                             │
+│ Metric đo thành công: Giảm thời gian xử lý sự cố từ 15 phút  │
+│ ──> dưới 3 phút (Efficiency) & đạt 98% chính xác địa điểm. │
+│                                                             │
+│ Quick Architecture: [x] LLM Feature (Draft SMS + Guardrails)│
+└─────────────────────────────────────────────────────────────┘
+```
 
 ---
 
-### QUICK PROBLEM CARD #3
+### 📌 QUICK PROBLEM CARD #2
 
-- **Bài toán (1 câu):** Tổng đài viên Vinmec phải hỏi thủ công triệu chứng qua điện thoại để xếp đúng chuyên khoa, gây chờ lâu và xếp sai khoa vào giờ cao điểm.
-- **Công ty thành viên:** [x] Vinmec
-- **Ai đang đau (Actor)?** Tổng đài viên đặt lịch khám; gián tiếp là bệnh nhân chờ lâu hoặc bị xếp sai khoa.
-- **Workflow thủ công hiện tại (4 bước):**
-  1. Bệnh nhân gọi điện, mô tả triệu chứng.
-  2. Tổng đài viên hỏi thêm để xác định chuyên khoa phù hợp.
-  3. Tổng đài viên tra lịch trống của bác sĩ theo khoa đã chọn.
-  4. Tổng đài viên xác nhận lịch hẹn với bệnh nhân.
-- **Bước nào tốn thời gian/lỗi nhất?** Bước 2 — ⏱ ước tính 4-6 phút/cuộc gọi vào giờ cao điểm, và là bước dễ xếp sai khoa nhất do phụ thuộc kinh nghiệm cá nhân của tổng đài viên.
-- **AI có thể nhảy vào hỗ trợ ở bước nào?** Bước 2: AI hỏi triệu chứng theo kịch bản chuẩn hóa và gợi ý chuyên khoa phù hợp nhất, tổng đài viên xác nhận trước khi đặt lịch.
-- **Đo thành công bằng gì (Metric có số)?** Giảm thời gian trung bình mỗi cuộc gọi từ 6 phút xuống dưới 3 phút; giảm tỷ lệ xếp sai khoa cần chuyển lại lịch.
-- **Quick Architecture:** [x] LLM (có fallback chuyển tổng đài viên nếu triệu chứng không rõ ràng hoặc khẩn cấp)
+```text
+┌─────────────────────────────────────────────────────────────┐
+│ QUICK PROBLEM CARD #2                                       │
+│                                                             │
+│ Bài toán: Phân loại và soạn phản hồi tự động cho phản ánh   │
+│ khiếu nại của cư dân trên App Vinhomes Resident.           │
+│ Công ty thành viên: [x] Vinhomes                            │
+│                                                             │
+│ Ai đang đau (Actor)? Nhân viên Ban quản lý tòa nhà (CSKH)  │
+│                                                             │
+│ Workflow thủ công hiện tại (4 bước):                        │
+│   1. Tiếp nhận phản ánh từ App cư dân                       │
+│   ──> 2. Phân loại thủ công phòng ban (Kỹ thuật/Vệ sinh) 🔴  │
+│   ──> 3. Kiểm tra quy trình & soạn văn bản trả lời 🔴        │
+│   ──> 4. Gửi thông báo đến cư dân                           │
+│                                                             │
+│ Bước tốn thời gian nhất? Bước 2 & 3 (⏱ 30 phút/khiếu nại)   │
+│ AI hỗ trợ ở bước nào? Phân loại tự động & Gợi ý phản hồi draft│
+│                                                             │
+│ Metric đo thành công: Rút ngắn thời gian phản hồi từ 12 giờ │
+│ ──> dưới 30 phút.                                           │
+│                                                             │
+│ Quick Architecture: [x] LLM Feature (Routing + Draft Gen)   │
+└─────────────────────────────────────────────────────────────┘
+```
+
+---
+
+### 📌 QUICK PROBLEM CARD #3
+
+```text
+┌─────────────────────────────────────────────────────────────┐
+│ QUICK PROBLEM CARD #3                                       │
+│                                                             │
+│ Bài toán: Tóm tắt hồ sơ bệnh án và tạo dự thảo giấy xuất    │
+│ viện cho bệnh nhân tại Vinmec.                              │
+│ Công ty thành viên: [x] Vinmec                              │
+│                                                             │
+│ Ai đang đau (Actor)? Bác sĩ điều trị & Y sĩ hành chính      │
+│                                                             │
+│ Workflow thủ công hiện tại (4 bước):                        │
+│   1. Đọc lại lịch sử khám, xét nghiệm và đơn thuốc         │
+│   ──> 2. Tổng hợp các chỉ số quan trọng vào mẫu xuất viện 🔴 │
+│   ──> 3. Soạn thảo khuyến nghị chăm sóc sau xuất viện 🔴     │
+│   ──> 4. Bác sĩ rà soát và ký duyệt                         │
+│                                                             │
+│ Bước tốn thời gian nhất? Bước 2 & 3 (⏱ 25 phút/bệnh nhân)   │
+│ AI hỗ trợ ở bước nào? Trích xuất thông tin & Tóm tắt draft  │
+│                                                             │
+│ Metric đo thành công: Giảm thời gian làm hồ sơ từ 25 phút   │
+│ ──> dưới 5 phút.                                            │
+│                                                             │
+│ Quick Architecture: [x] Agentic Loop (Medical Extraction)   │
+└─────────────────────────────────────────────────────────────┘
+```
